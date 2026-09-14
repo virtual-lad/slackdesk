@@ -1,0 +1,77 @@
+/* SlackDesk Privacy Blur Stylesheet */
+
+/* Message text blur */
+body.slackdesk-blur-messages [data-qa="message_content"],
+body.slackdesk-blur-messages .c-message_kit__blocks,
+body.slackdesk-blur-messages .c-message__body {
+    filter: blur(5px) grayscale(0.6);
+    transition: filter 0.2s ease;
+}
+
+body.slackdesk-blur-messages [data-qa="message_content"]:hover,
+body.slackdesk-blur-messages .c-message_kit__blocks:hover,
+body.slackdesk-blur-messages .c-message__body:hover {
+    filter: blur(0) grayscale(0);
+}
+
+/* Sidebar Channels & DMs blur */
+body.slackdesk-blur-sidebar [data-qa="channel_sidebar_name"],
+body.slackdesk-blur-sidebar .p-channel_sidebar__name,
+body.slackdesk-blur-sidebar .p-channel_sidebar__channel {
+    filter: blur(4px);
+    transition: filter 0.2s ease;
+}
+
+body.slackdesk-blur-sidebar [data-qa="channel_sidebar_name"]:hover,
+body.slackdesk-blur-sidebar .p-channel_sidebar__name:hover,
+body.slackdesk-blur-sidebar .p-channel_sidebar__channel:hover {
+    filter: blur(0);
+}
+
+/* Sender & User Names blur */
+body.slackdesk-blur-names [data-qa="message_sender_name"],
+body.slackdesk-blur-names .c-message_kit__sender_name,
+body.slackdesk-blur-names .c-message__sender_link,
+body.slackdesk-blur-names [data-qa="channel_name"],
+body.slackdesk-blur-names .p-classic_nav__team_header__name {
+    filter: blur(4px);
+    transition: filter 0.2s ease;
+}
+
+body.slackdesk-blur-names [data-qa="message_sender_name"]:hover,
+body.slackdesk-blur-names .c-message_kit__sender_name:hover,
+body.slackdesk-blur-names .c-message__sender_link:hover,
+body.slackdesk-blur-names [data-qa="channel_name"]:hover,
+body.slackdesk-blur-names .p-classic_nav__team_header__name:hover {
+    filter: blur(0);
+}
+
+/* Avatars blur */
+body.slackdesk-blur-avatars .c-avatar__image,
+body.slackdesk-blur-avatars [data-qa="user_image"],
+body.slackdesk-blur-avatars .c-avatar {
+    filter: blur(6px) grayscale(0.8);
+    transition: filter 0.2s ease;
+}
+
+body.slackdesk-blur-avatars .c-avatar__image:hover,
+body.slackdesk-blur-avatars [data-qa="user_image"]:hover,
+body.slackdesk-blur-avatars .c-avatar:hover {
+    filter: blur(0) grayscale(0);
+}
+
+/* File attachments and image media blur */
+body.slackdesk-blur-media .c-file_container,
+body.slackdesk-blur-media .c-message_attachment,
+body.slackdesk-blur-media img.c-message__image,
+body.slackdesk-blur-media .c-message_kit__file {
+    filter: blur(8px) grayscale(0.8);
+    transition: filter 0.2s ease;
+}
+
+body.slackdesk-blur-media .c-file_container:hover,
+body.slackdesk-blur-media .c-message_attachment:hover,
+body.slackdesk-blur-media img.c-message__image:hover,
+body.slackdesk-blur-media .c-message_kit__file:hover {
+    filter: blur(0) grayscale(0);
+}

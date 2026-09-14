@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SlackDesk Preferences</title>
+    <style>
+        :root {
+            --bg-color: #1a1d21;
+            --card-bg: #222529;
+            --accent-color: #611f69;
+            --accent-hover: #4a154b;
+            --text-color: #d1d2d3;
+            --text-heading: #ffffff;
+            --border-color: #383b40;
+            --toggle-on: #2bac76;
+            --toggle-off: #4a4d52;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            padding: 24px;
+            user-select: none;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .header h1 {
+            font-size: 20px;
+            color: var(--text-heading);
+        }
+
+        .section {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+            border: 1px solid var(--border-color);
+        }
+
+        .section-title {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #ababad;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .setting-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+        }
+
+        .setting-row:not(:last-child) {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .setting-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .setting-title {
+            font-size: 14px;
+            color: var(--text-heading);
+            font-weight: 500;
+        }
+
+        .setting-desc {
+            font-size: 12px;
+            color: #ababad;
+        }
+
+        /* Toggle switch */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 44px;
+            height: 24px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: var(--toggle-off);
+            transition: .2s;
+            border-radius: 24px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .2s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--toggle-on);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(20px);
+        }
+
+        .text-input {
+            width: 100%;
+            background: #1a1d21;
+            border: 1px solid var(--border-color);
+            color: #fff;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            margin-top: 8px;
+            outline: none;
+        }
+
+        .text-input:focus {
+            border-color: var(--accent-color);
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 11px;
+            color: #696969;
+            margin-top: 24px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>SlackDesk Preferences</h1>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Privacy Blur Controls</div>
+        
+        <div class="setting-row">
+            <div class="setting-info">
+                <div class="setting-title">Global Privacy Mode</div>
+                <div class="setting-desc">Enable/disable all privacy blurs (Hotkey: Ctrl+P)</div>
+            </div>
+            <label class="switch">
+                <input type="checkbox" id="privacyBlur">
+                <span class="slider"></span>
+            </label>
+        </div>
+
+        <div class="setting-row">
+            <div class="setting-info">
+                <div class="setting-title">Blur Chat Messages</div>
+                <div class="setting-desc">Blurs message text content in channels & DMs</div>
+            </div>
+            <label class="switch">
+                <input type="checkbox" id="blurMessages">
+                <span class="slider"></span>
+            </label>
+        </div>
+
+        <div class="setting-row">
+            <div class="setting-info">
+                <div class="setting-title">Blur Sidebar Channels & DMs</div>
+                <div class="setting-desc">Blurs channel titles and contact names in sidebar</div>
+            </div>
+            <label class="switch">
+                <input type="checkbox" id="blurSidebar">
+                <span class="slider"></span>
+            </label>
+        </div>
+
+        <div class="setting-row">
+            <div class="setting-info">
+                <div class="setting-title">Blur Sender & User Names</div>
+                <div class="setting-desc">Blurs user names in messages & header</div>
+            </div>
+            <label class="switch">
+                <input type="checkbox" id="blurNames">
+                <span class="slider"></span>
+            </label>
+        </div>
+
+        <div class="setting-row">
+            <div class="setting-info">
+                <div class="setting-title">Blur User Avatars</div>
+                <div class="setting-desc">Blurs user profile photos across Slack</div>
+            </div>
+            <label class="switch">
+                <input type="checkbox" id="blurAvatars">
+                <span class="slider"></span>
+            </label>
+        </div>
+
+        <div class="setting-row">
+            <div class="setting-info">
+                <div class="setting-title">Blur Files & Images</div>
+                <div class="setting-desc">Blurs uploaded media, photos & document previews</div>
+            </div>
+            <label class="switch">
+                <input type="checkbox" id="blurMedia">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Startup & Behavior</div>
+
+        <div class="setting-row">
+            <div class="setting-info">
+                <div class="setting-title">Exit on Window Close</div>
+                <div class="setting-desc">Close app entirely instead of minimizing to tray</div>
+            </div>
+            <label class="switch">
+                <input type="checkbox" id="closeExit">
+                <span class="slider"></span>
+            </label>
+        </div>
+
+        <div class="setting-row">
+            <div class="setting-info" style="width: 100%;">
+                <div class="setting-title">Custom Startup Slack URL</div>
+                <div class="setting-desc">Leave empty for default app.slack.com/client</div>
+                <input type="text" id="customUrl" class="text-input" placeholder="e.g. https://yourteam.slack.com">
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        SlackDesk v1.0.0 • Privacy Blur Desktop Client
+    </div>
+
+    <script>
+        const { ipcRenderer } = require('electron');
+
+        const configs = ipcRenderer.sendSync('get-settings');
+
+        const checkboxes = ['privacyBlur', 'blurMessages', 'blurSidebar', 'blurNames', 'blurAvatars', 'blurMedia', 'closeExit'];
+
+        checkboxes.forEach(id => {
+            const el = document.getElementById(id);
+            if (el && configs[id]) {
+                el.checked = configs[id].value;
+                el.addEventListener('change', (e) => {
+                    ipcRenderer.send('save-setting', { name: id, value: e.target.checked });
+                });
+            }
+        });
+
+        const customUrlEl = document.getElementById('customUrl');
+        if (customUrlEl && configs.customUrl) {
+            customUrlEl.value = configs.customUrl.value || '';
+            customUrlEl.addEventListener('change', (e) => {
+                ipcRenderer.send('save-setting', { name: 'customUrl', value: e.target.value });
+            });
+        }
+    </script>
+</body>
+</html>

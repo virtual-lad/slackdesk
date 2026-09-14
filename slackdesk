@@ -1,0 +1,3 @@
+#!/bin/bash
+cd /home/dell/Applications/slackdesk
+exec npm start

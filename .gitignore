@@ -1,0 +1,10 @@
+node_modules/
+dist/
+electron-build/
+*.log
+verify_step_*.png
+inspect_step_*.png
+save_screenshot.js
+verify_app.js
+inspect_running_app.js
+.DS_Store
