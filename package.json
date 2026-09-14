@@ -2,7 +2,7 @@
 	"name": "slackdesk",
 	"version": "1.0.0",
 	"description": "Slack Desktop Client with Blur Privacy Mode",
-	"homepage": "https://github.com/slackdesk/slackdesk",
+	"homepage": "https://github.com/virtual-lad/slackdesk",
 	"main": "main.js",
 	"scripts": {
 		"start": "electron main.js",
