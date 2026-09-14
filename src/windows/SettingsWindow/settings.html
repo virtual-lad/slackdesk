@@ -287,15 +287,19 @@
 
         const blurRadiusEl = document.getElementById('blurRadius');
         const blurRadiusValEl = document.getElementById('blurRadiusValue');
-        if (blurRadiusEl && configs.blurRadius) {
-            const val = configs.blurRadius.value || 5;
-            blurRadiusEl.value = val;
-            blurRadiusValEl.textContent = val + ' px';
-            blurRadiusEl.addEventListener('input', (e) => {
+        if (blurRadiusEl) {
+            const initialVal = (configs && configs.blurRadius && configs.blurRadius.value !== undefined) ? configs.blurRadius.value : 5;
+            blurRadiusEl.value = initialVal;
+            if (blurRadiusValEl) blurRadiusValEl.textContent = initialVal + ' px';
+
+            const handleBlurChange = (e) => {
                 const numVal = parseInt(e.target.value, 10);
-                blurRadiusValEl.textContent = numVal + ' px';
+                if (blurRadiusValEl) blurRadiusValEl.textContent = numVal + ' px';
                 ipcRenderer.send('save-setting', { name: 'blurRadius', value: numVal });
-            });
+            };
+
+            blurRadiusEl.addEventListener('input', handleBlurChange);
+            blurRadiusEl.addEventListener('change', handleBlurChange);
         }
 
         const customUrlEl = document.getElementById('customUrl');

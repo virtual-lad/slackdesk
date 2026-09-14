@@ -88,8 +88,12 @@
         const body = document.body;
         if (!body) return;
 
-        if (settings.blurRadius) {
-            document.documentElement.style.setProperty('--slackdesk-blur-radius', settings.blurRadius + 'px');
+        if (settings.blurRadius !== undefined) {
+            const rad = settings.blurRadius + 'px';
+            document.documentElement.style.setProperty('--slackdesk-blur-radius', rad);
+            if (document.body) {
+                document.body.style.setProperty('--slackdesk-blur-radius', rad);
+            }
         }
 
         if (settings.enabled) {
