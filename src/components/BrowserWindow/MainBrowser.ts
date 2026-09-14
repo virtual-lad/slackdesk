@@ -102,6 +102,7 @@ export class MainBrowser extends EventEmitter {
         const configs = SettingController.getAllConfigs();
         const settingsPayload = {
             enabled: configs.privacyBlur.value,
+            blurRadius: configs.blurRadius ? configs.blurRadius.value : 5,
             blurMessages: configs.blurMessages.value,
             blurSidebar: configs.blurSidebar.value,
             blurNames: configs.blurNames.value,

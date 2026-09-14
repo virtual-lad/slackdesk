@@ -13,7 +13,7 @@ export function SettingWindow(): BrowserWindow {
 
     settingsWin = new BrowserWindow({
         width: 540,
-        height: 640,
+        height: 720,
         resizable: false,
         title: "SlackDesk Settings",
         autoHideMenuBar: true,

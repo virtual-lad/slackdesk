@@ -3,10 +3,14 @@
 
     const cssContent = `
         /* SlackDesk Dynamic Privacy CSS */
+        :root {
+            --slackdesk-blur-radius: 5px;
+        }
+
         body.slackdesk-privacy-active.slackdesk-blur-messages [data-qa="message_content"],
         body.slackdesk-privacy-active.slackdesk-blur-messages .c-message_kit__blocks,
         body.slackdesk-privacy-active.slackdesk-blur-messages .c-message__body {
-            filter: blur(5px) grayscale(0.5) !important;
+            filter: blur(var(--slackdesk-blur-radius, 5px)) grayscale(0.5) !important;
             transition: filter 0.2s ease !important;
         }
         body.slackdesk-privacy-active.slackdesk-blur-messages [data-qa="message_content"]:hover,
@@ -18,7 +22,7 @@
         body.slackdesk-privacy-active.slackdesk-blur-sidebar [data-qa="channel_sidebar_name"],
         body.slackdesk-privacy-active.slackdesk-blur-sidebar .p-channel_sidebar__name,
         body.slackdesk-privacy-active.slackdesk-blur-sidebar .p-channel_sidebar__channel {
-            filter: blur(4px) !important;
+            filter: blur(calc(var(--slackdesk-blur-radius, 5px) * 0.8)) !important;
             transition: filter 0.2s ease !important;
         }
         body.slackdesk-privacy-active.slackdesk-blur-sidebar [data-qa="channel_sidebar_name"]:hover,
@@ -32,7 +36,7 @@
         body.slackdesk-privacy-active.slackdesk-blur-names .c-message__sender_link,
         body.slackdesk-privacy-active.slackdesk-blur-names [data-qa="channel_name"],
         body.slackdesk-privacy-active.slackdesk-blur-names .p-classic_nav__team_header__name {
-            filter: blur(4px) !important;
+            filter: blur(calc(var(--slackdesk-blur-radius, 5px) * 0.8)) !important;
             transition: filter 0.2s ease !important;
         }
         body.slackdesk-privacy-active.slackdesk-blur-names [data-qa="message_sender_name"]:hover,
@@ -46,7 +50,7 @@
         body.slackdesk-privacy-active.slackdesk-blur-avatars .c-avatar__image,
         body.slackdesk-privacy-active.slackdesk-blur-avatars [data-qa="user_image"],
         body.slackdesk-privacy-active.slackdesk-blur-avatars .c-avatar {
-            filter: blur(6px) grayscale(0.8) !important;
+            filter: blur(calc(var(--slackdesk-blur-radius, 5px) * 1.2)) grayscale(0.8) !important;
             transition: filter 0.2s ease !important;
         }
         body.slackdesk-privacy-active.slackdesk-blur-avatars .c-avatar__image:hover,
@@ -59,7 +63,7 @@
         body.slackdesk-privacy-active.slackdesk-blur-media .c-message_attachment,
         body.slackdesk-privacy-active.slackdesk-blur-media img.c-message__image,
         body.slackdesk-privacy-active.slackdesk-blur-media .c-message_kit__file {
-            filter: blur(8px) grayscale(0.8) !important;
+            filter: blur(calc(var(--slackdesk-blur-radius, 5px) * 1.5)) grayscale(0.8) !important;
             transition: filter 0.2s ease !important;
         }
         body.slackdesk-privacy-active.slackdesk-blur-media .c-file_container:hover,
@@ -83,6 +87,10 @@
         initStyle();
         const body = document.body;
         if (!body) return;
+
+        if (settings.blurRadius) {
+            document.documentElement.style.setProperty('--slackdesk-blur-radius', settings.blurRadius + 'px');
+        }
 
         if (settings.enabled) {
             body.classList.add('slackdesk-privacy-active');

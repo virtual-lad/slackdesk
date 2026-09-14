@@ -24,6 +24,13 @@ class SettingsController extends EventEmitter {
                 value: true,
                 default: true
             },
+            blurRadius: {
+                name: "blurRadius",
+                description: "Blur Radius Intensity (px)",
+                type: "number",
+                value: 5,
+                default: 5
+            },
             blurMessages: {
                 name: "blurMessages",
                 description: "Blur Chat Messages",

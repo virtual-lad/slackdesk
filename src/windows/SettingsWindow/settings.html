@@ -176,6 +176,15 @@
             </label>
         </div>
 
+        <div class="setting-row" style="flex-direction: column; align-items: flex-start; gap: 8px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                <div class="setting-title">Blur Quantity / Radius Intensity</div>
+                <span id="blurRadiusValue" style="font-size: 13px; font-weight: 600; color: #2bac76; background: rgba(43, 172, 118, 0.15); padding: 2px 8px; border-radius: 4px;">5 px</span>
+            </div>
+            <div class="setting-desc">Adjust manual blur strength from subtle (1px) to maximum privacy (20px)</div>
+            <input type="range" id="blurRadius" min="1" max="20" step="1" value="5" style="width: 100%; accent-color: #2bac76; cursor: pointer; margin-top: 4px;">
+        </div>
+
         <div class="setting-row">
             <div class="setting-info">
                 <div class="setting-title">Blur Chat Messages</div>
@@ -275,6 +284,19 @@
                 });
             }
         });
+
+        const blurRadiusEl = document.getElementById('blurRadius');
+        const blurRadiusValEl = document.getElementById('blurRadiusValue');
+        if (blurRadiusEl && configs.blurRadius) {
+            const val = configs.blurRadius.value || 5;
+            blurRadiusEl.value = val;
+            blurRadiusValEl.textContent = val + ' px';
+            blurRadiusEl.addEventListener('input', (e) => {
+                const numVal = parseInt(e.target.value, 10);
+                blurRadiusValEl.textContent = numVal + ' px';
+                ipcRenderer.send('save-setting', { name: 'blurRadius', value: numVal });
+            });
+        }
 
         const customUrlEl = document.getElementById('customUrl');
         if (customUrlEl && configs.customUrl) {

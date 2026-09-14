@@ -10,6 +10,7 @@ export type ValueSettings = SettingConfigInterface;
 
 export interface AppSettingsSchema {
     privacyBlur: SettingConfigInterface;
+    blurRadius: SettingConfigInterface;
     blurMessages: SettingConfigInterface;
     blurSidebar: SettingConfigInterface;
     blurNames: SettingConfigInterface;
